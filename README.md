@@ -30,3 +30,22 @@ auth {password}
 
 Wow, now you can use / consume redis, beautiful...
 
+---
+If you want, you can use docker-compose.yml file to run docker and docker-commander, but, for this, you need configure .env file and specify REDIS_PASSWORD, REDIS_COMMANDER_USER and REDIS_COMMANDER_PASS. I intend this way, its more simple and more flexible.
+
+Just run:
+```
+docker-compose up -d
+```
+or, if you want see logs:
+```
+docker-compose up
+```
+Now, you can check if always created successfully. You can access http://127.0.0.1:8081/ an try login, or, access redis-cli, for this:
+```
+docker exec -it redis redis-cli
+```
+and then, try login typing:
+```
+auth {REDIS_PASSWORD}
+```

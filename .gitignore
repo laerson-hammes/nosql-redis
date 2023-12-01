@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Redis conf
+/conf
+
+# Redis data - Backup path
+/redis-data
+
 # C extensions
 *.so
 

@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+    redis:
+        container_name: redis
+        image: redis:latest
+        restart: always
+        command: /bin/sh -c "redis-server --requirepass ${REDIS_PASSWORD}" # /etc/redis/redis.conf
+        env_file:
+            - .env
+        volumes:
+            - ./redis-data:/data
+            - ./conf/redis:/usr/local/etc/redis/redis.conf
+        ports:
+            - 6379:6379
+        networks:
+            - redis-network
+
+    redis-commander:
+        image: rediscommander/redis-commander:latest
+        hostname: redis-commander
+        restart: always
+        environment:
+            - REDIS_HOSTS=redis
+            - REDIS_HOST=redis
+            - REDIS_PORT=redis:6379
+            - REDIS_PASSWORD=${REDIS_PASSWORD}
+            - HTTP_USER=${REDIS_COMMANDER_USER}
+            - HTTP_PASSWORD=${REDIS_COMMANDER_PASS}
+        env_file:
+            - .env
+        ports:
+            - 8081:8081
+        networks:
+            - redis-network
+        depends_on:
+            - redis
+
+networks:
+    redis-network:
+        driver: bridge

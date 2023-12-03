@@ -88,3 +88,88 @@ In the code example i import Redis, of course, to stabilish a connection with th
 Next, create Redis instance and pass to the constructor function env vars, like host, port and password, and pass either, database, default Redis db is 0, pass charset and decode_responses.
 
 Then, in main function i check if connection can be created, raising exception if not.
+
+## Redis Operations
+### Strings:
+**SET and GET:**
+
+**set**: Set a value. Return boolean.
+```python
+conn.set(3, "DESIGNER")
+```
+**get**: Get a value.
+```python
+print(conn.get("3"))
+```
+**getset**: Set new value and return old string value
+```python
+print(conn.getset(2, "Engenheiro de dados"))
+```
+---
+**Multiple Values - SET:**
+
+**mset**: Set multiple values, pass dictionary / key - value. Return boolean.
+```python
+many = {
+    1: "Engenheiro de dados",
+    2: "Engenheiro de software"
+}
+conn.mset(many)
+```
+**Multiple Values - GET:**
+
+**mget**: Get multiple values, just pass all keys that you intend get. Return list with all values, None if value does not exist.
+```python
+print(conn.mget(2, 3, 1))
+```
+---
+**exists**: Check if a value exists. Return boolean.
+```python
+print(conn.exists(1))
+```
+---
+**delete**: Delete a value. Return 1 (if deleted) or 0.
+```python
+conn.delete(1)
+```
+---
+**type**: Return type of value.
+```python
+print(conn.type(2))
+```
+---
+**Expiration - SET:**
+
+**expire**: Set in how many seconds the value will expire. Return boolean.
+```python
+conn.expire(3, 60)
+```
+**pexpire**: Set in how many milliseconds the value will expire. Return boolean.
+```python
+conn.pexpire(2, 5000)
+```
+**Expiration - GET:**
+
+**ttl**: Get how many seconds left until the value expires
+```python
+print(conn.ttl(3))
+```
+**pttl**: Get how many milliseconds left until the value expires
+```python
+print(conn.pttl(2))
+```
+---
+**persist**: Calcel expiration time, and persist the value in memory. Return boolean.
+```python
+conn.persist(2)
+```
+---
+**getrange**: Get value range, you specify the string key and next start and end range, same range in python / other programming languages.
+```python
+print(conn.getrange(2, 0, 9))
+```
+---
+**strlen**: Get value length
+```python
+print(conn.strlen(2))
+```

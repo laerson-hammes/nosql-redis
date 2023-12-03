@@ -23,8 +23,37 @@ def main(conn: Redis):
     if not conn.ping():
         raise "Connection error while trying to ping"
 
-    conn.set("3", "DESIGNER")
-    print(conn.get("2"))
+    if not conn.exists(3):
+        conn.set(3, "DESIGNER")
+        print(conn.get("3"))
+
+    if not conn.exists(1) or not conn.exists(2):
+        many = {
+            1: "Engenheiro de dados",
+            2: "Engenheiro de software"
+        }
+        conn.mset(many)
+
+    if conn.exists(1):
+        conn.delete(1)
+
+    print(conn.type(2))
+
+    conn.expire(3, 60)
+    conn.pexpire(2, 5000)
+
+    print(conn.ttl(3))
+    print(conn.pttl(2))
+
+    conn.persist(2)
+
+    print(conn.getrange(2, 0, 9))
+
+    print(conn.getset(2, "Engenheiro de dados"))
+
+    print(conn.mget(2, 3, 1))
+
+    print(conn.strlen(2))
 
 
 if __name__ == '__main__':

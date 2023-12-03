@@ -49,3 +49,42 @@ and then, try login typing:
 ```
 auth {REDIS_PASSWORD}
 ```
+
+##  Redis Connection
+```python
+from dotenv import load_dotenv
+from redis import Redis
+import os
+
+
+load_dotenv('.env', verbose=True)
+HOST: str = os.environ.get('REDIS_HOST')
+PORT: int = int(os.environ.get('REDIS_PORT'))
+PASSWORD: str = os.environ.get('REDIS_PASSWORD')
+
+
+def connection() -> Redis:
+    return Redis(
+        host=HOST,
+        port=PORT,
+        db=0,
+        password=PASSWORD,
+        charset='utf-8',
+        decode_responses=True
+    )
+
+def main(conn: Redis):
+    if not conn.ping():
+        raise "Connection error while trying to ping"
+
+
+if __name__ == '__main__':
+    conn: Redis = connection()
+    main(conn)
+
+```
+In the code example i import Redis, of course, to stabilish a connection with the database, dotenv to load .env file and os to get environment variables.
+
+Next, create Redis instance and pass to the constructor function env vars, like host, port and password, and pass either, database, default Redis db is 0, pass charset and decode_responses.
+
+Then, in main function i check if connection can be created, raising exception if not.

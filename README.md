@@ -1,6 +1,15 @@
 # nosql-redis
 REDIS NoSQL Database - Consumed in Python
 
+## Menu
+- [Install Redis on Docker](https://github.com/laerson-hammes/nosql-redis#install-redis-on-docker)
+- [Redis Connection](https://github.com/laerson-hammes/nosql-redis#redis-connection)
+- [Redis Operations](https://github.com/laerson-hammes/nosql-redis#redis-operations)
+    - [String Operations](https://github.com/laerson-hammes/nosql-redis#strings-operations)
+    - [Hashes Operations](https://github.com/laerson-hammes/nosql-redis#hashes-operations)
+    - [Lists Operations](https://github.com/laerson-hammes/nosql-redis#lists-operations)
+    - [Sets Operations](https://github.com/laerson-hammes/nosql-redis#sets-operations)
+
 ## Install Redis on Docker
 ```
 docker run -d --cap-add sys_resource --name rp -p 8443:8443 -p 9443:9443 -p 12000:12000 redislabs/redis
@@ -90,7 +99,7 @@ Next, create Redis instance and pass to the constructor function env vars, like 
 Then, in main function i check if connection can be created, raising exception if not.
 
 ## Redis Operations
-### Strings:
+### String Operations:
 **SET and GET:**
 
 **set**: Set a value. Return boolean.
@@ -173,3 +182,6 @@ print(conn.getrange(2, 0, 9))
 ```python
 print(conn.strlen(2))
 ```
+### Hashes Operations:
+### Lists Operations:
+### Sets Operations:

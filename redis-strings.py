@@ -32,21 +32,20 @@ def main(conn: Redis):
             1: "Engenheiro de dados",
             2: "Engenheiro de software"
         }
-        print(conn.mset(many))
+        conn.mset(many)
 
     if conn.exists(1):
-        print("sss")
-        print(conn.delete(1))
+        conn.delete(1)
 
     print(conn.type(2))
 
-    print(conn.expire(3, 60))
-    print(conn.pexpire(2, 5000))
+    conn.expire(3, 60)
+    conn.pexpire(2, 5000)
 
     print(conn.ttl(3))
     print(conn.pttl(2))
 
-    print(conn.persist(2))
+    conn.persist(2)
 
     print(conn.getrange(2, 0, 9))
 

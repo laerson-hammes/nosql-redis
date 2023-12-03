@@ -40,7 +40,7 @@ auth {password}
 Wow, now you can use / consume redis, beautiful...
 
 ---
-If you want, you can use docker-compose.yml file to run docker and docker-commander, but, for this, you need configure .env file and specify REDIS_PASSWORD, REDIS_COMMANDER_USER and REDIS_COMMANDER_PASS. I intend this way, its more simple and more flexible.
+If you want, you can use docker-compose.yml file to run docker and docker-commander, but, for this, you need configure .env file and specify REDIS_PASSWORD, REDIS_COMMANDER_USER and REDIS_COMMANDER_PASS. I prefere this way, its more simple and more flexible.
 
 Just run:
 ```

@@ -114,7 +114,6 @@ print(conn.get("3"))
 ```python
 print(conn.getset(2, "Engenheiro de dados"))
 ```
----
 **Multiple Values - SET:**
 
 **mset**: Set multiple values, pass dictionary / key - value. Return boolean.
@@ -131,22 +130,18 @@ conn.mset(many)
 ```python
 print(conn.mget(2, 3, 1))
 ```
----
 **exists**: Check if a value exists. Return boolean.
 ```python
 print(conn.exists(1))
 ```
----
 **delete**: Delete a value. Return 1 (if deleted) or 0.
 ```python
 conn.delete(1)
 ```
----
 **type**: Return type of value.
 ```python
 print(conn.type(2))
 ```
----
 **Expiration - SET:**
 
 **expire**: Set in how many seconds the value will expire. Return boolean.
@@ -167,17 +162,14 @@ print(conn.ttl(3))
 ```python
 print(conn.pttl(2))
 ```
----
 **persist**: Calcel expiration time, and persist the value in memory. Return boolean.
 ```python
 conn.persist(2)
 ```
----
 **getrange**: Get value range, you specify the string key and next start and end range, same range in python / other programming languages.
 ```python
 print(conn.getrange(2, 0, 9))
 ```
----
 **strlen**: Get value length
 ```python
 print(conn.strlen(2))

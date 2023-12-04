@@ -175,5 +175,54 @@ print(conn.getrange(2, 0, 9))
 print(conn.strlen(2))
 ```
 ### Hashes Operations:
+**SET and GET:**
+
+**hset**: Set hash. You can pass a dictionary or just key, value. Returns the number of fields that were added.
+
+Example with dictionary:
+```python
+conn.hset(name="register", mapping={
+    "name": "Josef",
+    "years": 29,
+    "email": "josef@gmail.com",
+    "city": "San Francisco"
+})
+```
+Example with just key, value:
+```python
+conn.hset(
+    name="address",
+    key="city",
+    value="San Francisco"
+)
+```
+**hgetall**: Return a Python dict of the hash's name / value pairs.
+```python
+print(conn.hgetall("register"))
+```
+**hmget**: Get specific fields from hash. Returns a list. In the example bellow, return just name and email values.
+```python
+print(conn.hmget("register", "name", "email"))
+```
+**hvals**: Get all values from hash. Returns a list.
+```python
+print(conn.hvals("register"))
+```
+**hexists**: Check if a field exists in hash. Return a boolean.
+```python
+print(conn.hexists("register", "name"))
+```
+**hkeys**: Get all keys from hash. Returns a list.
+```python
+print(conn.hkeys("register"))
+```
+**hlen**: Return the number of elements in hash.
+```python
+print(conn.hlen("register"))
+```
+**hdel**: Delete key / keys from hash. Return number of keys been deleted.
+```python
+print(conn.hdel("register", "city"))
+```
 ### Lists Operations:
 ### Sets Operations:

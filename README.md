@@ -114,6 +114,7 @@ print(conn.get("3"))
 ```python
 print(conn.getset(2, "Engenheiro de dados"))
 ```
+---
 **Multiple Values - SET:**
 
 **mset**: Set multiple values, pass dictionary / key - value. Return boolean.
@@ -130,6 +131,7 @@ conn.mset(many)
 ```python
 print(conn.mget(2, 3, 1))
 ```
+---
 **exists**: Check if a value exists. Return boolean.
 ```python
 print(conn.exists(1))
@@ -162,6 +164,7 @@ print(conn.ttl(3))
 ```python
 print(conn.pttl(2))
 ```
+---
 **persist**: Calcel expiration time, and persist the value in memory. Return boolean.
 ```python
 conn.persist(2)
@@ -208,6 +211,7 @@ print(conn.hmget("register", "name", "email"))
 ```python
 print(conn.hvals("register"))
 ```
+---
 **hexists**: Check if a field exists in hash. Return a boolean.
 ```python
 print(conn.hexists("register", "name"))
@@ -225,4 +229,48 @@ print(conn.hlen("register"))
 print(conn.hdel("register", "city"))
 ```
 ### Lists Operations:
+**Insertion:**
+
+**lpush**: Insert / push a value into the head of the list. Create list if not exists. Return list length.
+```python
+print(conn.lpush(44, "MySQL", "Oracle", "PostgreSQL", "SQL Server"))
+```
+**rpush**: Insert / push a value into the tail of the list. Create list if not exists. Return list length.
+```python
+print(conn.rpush(44, "DB2"))
+```
+**linsert**: Insert after / before specific value. Returns the new length of the list on success or -1 if refvalue is not in the list.
+```python
+print(conn.linsert(44, where="AFTER", refvalue="Oracle", value="Firebird"))
+```
+```python
+print(conn.linsert(44, where="BEFORE", refvalue="Firebird", value="SQLite"))
+```
+---
+**lrange**: Get range of values from the list. Return list with values.
+```python
+print(conn.lrange(44, 0, 3))
+```
+**lset**: Update list value, you need pass the index to the value that you will update and new value. Return bool.
+```python
+print(conn.lset(44, index=1, value="OtherDB"))
+```
+**lindex**: Get list value by index.
+```python
+print(conn.lindex(name=44, index=1))
+```
+**llen**: Return list length.
+```python
+print(conn.llen(name=44))
+```
+**Removing values from the list:**
+
+**lpop**: Remove first value from the list. Return value deleted.
+```python
+print(conn.lpop(name=44))
+```
+**rpop**: Remove last value from the list. Return value deleted.
+```python
+print(conn.rpop(name=44))
+```
 ### Sets Operations:

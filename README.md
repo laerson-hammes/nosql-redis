@@ -263,6 +263,7 @@ print(conn.lindex(name=44, index=1))
 ```python
 print(conn.llen(name=44))
 ```
+---
 **Removing values from the list:**
 
 **lpop**: Remove first value from the list. Return value deleted.
@@ -274,3 +275,81 @@ print(conn.lpop(name=44))
 print(conn.rpop(name=44))
 ```
 ### Sets Operations:
+
+**Unordered sets:**
+
+**sadd**: Add value / values to the set, create it if doesn't exist. Return number of elements added to the set.
+
+If you add a existing value, return 0, doesn`t add it to the set.
+```python
+print(conn.sadd(55, "Hadoop", "Spark", "Hive", "Pig"))
+```
+**smembers**: Get all set members. Return Python set data object.
+```python
+print(conn.smembers(name=55))
+```
+**scard**: Return set length.
+```python
+print(conn.scard(name=55))
+```
+**sismember**: Ckeck if a value is member / is in the set. Return bool.
+```python
+print(conn.sismember(name=55, value="Spark"))
+```
+**srem**: Remove a value / or values from the set. Return number of removed values.
+```python
+print(conn.srem(55, "Spark"))
+```
+---
+**Unordered Sets operations:**
+
+**sdiff**: Return set with differences between two sets. Note that in the code below i`m checking the difference from the set with key 55 to the set with key 56.
+```python
+print(conn.sdiff(55, 56))
+```
+Next, i`m check the difference from the set with key 56 to the set with key 55.
+```python
+print(conn.sdiff(56, 55))
+```
+**sinter**: Check sets intersection. Return set.
+```python
+print(conn.sinter(55, 56))
+```
+---
+**Ordered Sets:**
+
+**zadd**: Add value / values with score in the set, create it if doesn't exist.
+
+Return number of elements added to the set.
+```python
+print(conn.zadd(name=64, mapping={
+    "Hadoop": 0,
+    "Solr": 1,
+    "Hive": 2,
+    "Flume": 3,
+}))
+```
+**zcard**: Return number of set elements.
+```python
+print(conn.zcard(name=64))
+```
+**zrank**: Get index of a set element. If you pass withscore=True return a list with the index and the score, by default withscore is equal False.
+```python
+print(conn.zrank(name=64, value="Solr"))
+```
+**zcount**: Count how many elements i have between two numbers, min and max.
+```python
+print(conn.zcount(name=64, min=0, max=3))
+```
+**zscore**: Get score for set element. Return a float.
+```python
+print(conn.zscore(name=64, value="Solr"))
+```
+**zrange**: Return a list with set members by index, start and end. You can specify order, withscores, and more items.
+```python
+print(conn.zrange(name=64, start=0, end=3))
+```
+**zrem**: Remove an element or many elements from the set. Return number of elements removed.
+```python
+print(conn.zrem(name=64, values="Solr"))
+```
